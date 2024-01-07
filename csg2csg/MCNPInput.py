@@ -276,7 +276,7 @@ class MCNPInput(InputDeck):
                 self.__make_transform_card(self.file_lines[idx])
             idx += 1
         return
-
+    
     # apply surface transforms if needed
     def __apply_surface_transformations(self):
         for surf in self.surface_list:
@@ -591,6 +591,25 @@ class MCNPInput(InputDeck):
                 + str(surf.surface_coefficients[1])
             )
         if surf.surface_type == SurfaceCard.SurfaceType["CONE_Z"]:
+            new_surf = MCNPSurfaceCard(
+                str(self.last_free_surface_index)
+                + " pz "
+                + str(surf.surface_coefficients[2])
+            )
+        
+        if surf.surface_type == SurfaceCard.SurfaceType["CONE_X_ONE_SIDED"]:
+            new_surf = MCNPSurfaceCard(
+                str(self.last_free_surface_index)
+                + " px "
+                + str(surf.surface_coefficients[0])
+            )
+        if surf.surface_type == SurfaceCard.SurfaceType["CONE_Y_ONE_SIDED"]:
+            new_surf = MCNPSurfaceCard(
+                str(self.last_free_surface_index)
+                + " py "
+                + str(surf.surface_coefficients[1])
+            )
+        if surf.surface_type == SurfaceCard.SurfaceType["CONE_Z_ONE_SIDED"]:
             new_surf = MCNPSurfaceCard(
                 str(self.last_free_surface_index)
                 + " pz "

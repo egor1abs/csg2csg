@@ -38,6 +38,10 @@ class SurfaceCard(Card):
         MACRO_RPP = 15
         MACRO_BOX = 16
         MACRO_RCC = 17
+        CONE_X_ONE_SIDED = 18
+        CONE_Y_ONE_SIDED = 19
+        CONE_Z_ONE_SIDED = 20
+
 
     # constructor for building a surface card
     def __init__(self, card_string):
@@ -270,6 +274,42 @@ class SurfaceCard(Card):
                 + self.surface_coefficients[2] ** 2
             )
         elif self.surface_type == self.SurfaceType["CONE_Z"]:
+            a = 1
+            b = 1
+            c = -1 * self.surface_coefficients[3]
+            g = -2 * self.surface_coefficients[0]
+            h = -2 * self.surface_coefficients[1]
+            j = 2 * self.surface_coefficients[2] * self.surface_coefficients[3]
+            k = (
+                self.surface_coefficients[0] ** 2
+                + self.surface_coefficients[1] ** 2
+                - self.surface_coefficients[2] ** 2 * self.surface_coefficients[3]
+            )
+        elif self.surface_type == self.SurfaceType["CONE_X_ONE_SIDED"]:
+            a = -1 * self.surface_coefficients[3]
+            b = 1
+            c = 1
+            g = 2 * self.surface_coefficients[0] * self.surface_coefficients[3]
+            h = -2 * self.surface_coefficients[1]
+            j = -2 * self.surface_coefficients[2]
+            k = (
+                -self.surface_coefficients[3] * self.surface_coefficients[0] ** 2
+                + self.surface_coefficients[1] ** 2
+                + self.surface_coefficients[2] ** 2
+            )
+        elif self.surface_type == self.SurfaceType["CONE_Y_ONE_SIDED"]:
+            a = 1
+            b = -1 * self.surface_coefficients[3]
+            c = 1
+            g = -2 * self.surface_coefficients[0]
+            h = 2 * self.surface_coefficients[1] * self.surface_coefficients[3]
+            j = -2 * self.surface_coefficients[2]
+            k = (
+                self.surface_coefficients[0] ** 2
+                - self.surface_coefficients[3] * self.surface_coefficients[1] ** 2
+                + self.surface_coefficients[2] ** 2
+            )
+        elif self.surface_type == self.SurfaceType["CONE_Z_ONE_SIDED"]:
             a = 1
             b = 1
             c = -1 * self.surface_coefficients[3]

@@ -149,6 +149,32 @@ def mcnp_cone_z(SurfaceCard):
     string += str(SurfaceCard.surface_coefficients[3]) + "\n"
     return string
 
+# write the mcnp form of an cone on x-axis
+def mcnp_cone_x_one_sided(SurfaceCard):
+    string = "kx "
+    string += str(SurfaceCard.surface_coefficients[0]) + " "
+    string += str(SurfaceCard.surface_coefficients[1]) + " "
+    string += str(SurfaceCard.surface_coefficients[2]) + "\n"
+    return string
+
+
+# write the mcnp form of an cone on y-axis
+def mcnp_cone_y_one_sided(SurfaceCard):
+    string = "ky "
+    string += str(SurfaceCard.surface_coefficients[0]) + " "
+    string += str(SurfaceCard.surface_coefficients[1]) + " "
+    string += str(SurfaceCard.surface_coefficients[2]) + "\n"
+    return string
+
+
+# write the mcnp form of an cone on z-axis
+def mcnp_cone_z_one_sided(SurfaceCard):
+    string = "kz "
+    print(SurfaceCard.surface_coefficients)
+    string += str(SurfaceCard.surface_coefficients[0]) + " "
+    string += str(SurfaceCard.surface_coefficients[1]) + " "
+    string += str(SurfaceCard.surface_coefficients[2]) + "\n"
+    return string
 
 # write the mcnp form of an arbitrary sphere
 def mcnp_sphere(SurfaceCard):
@@ -237,6 +263,12 @@ def write_mcnp_surface(filestream, SurfaceCard):
     elif SurfaceCard.surface_type == SurfaceCard.SurfaceType["CONE_Y"]:
         string += mcnp_cone_y(SurfaceCard)
     elif SurfaceCard.surface_type == SurfaceCard.SurfaceType["CONE_Z"]:
+        string += mcnp_cone_z(SurfaceCard)
+    elif SurfaceCard.surface_type == SurfaceCard.SurfaceType["CONE_X_ONE_SIDED"]:
+        string += mcnp_cone_x(SurfaceCard)
+    elif SurfaceCard.surface_type == SurfaceCard.SurfaceType["CONE_Y_ONE_SIDED"]:
+        string += mcnp_cone_y(SurfaceCard)
+    elif SurfaceCard.surface_type == SurfaceCard.SurfaceType["CONE_Z_ONE_SIDED"]:
         string += mcnp_cone_z(SurfaceCard)
     elif SurfaceCard.surface_type == SurfaceCard.SurfaceType["SPHERE_GENERAL"]:
         string += mcnp_sphere(SurfaceCard)
